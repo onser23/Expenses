@@ -9,6 +9,7 @@ import AllExprenses from '../screens/AllExprenses';
 import ManageExpenses from '../screens/ManageExpenses';
 
 import {GlobalStyles} from '../constants/styles';
+import IconButton from '../components/UI/Icon';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -16,12 +17,22 @@ const Stack = createNativeStackNavigator();
 const ExprensesOverview = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({navigation}) => ({
         headerStyle: {backgroundColor: GlobalStyles.colors.primar500},
         headerTintColor: '#fff',
         tabBarStyle: {backgroundColor: GlobalStyles.colors.primar500},
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
-      }}>
+        headerRight: ({tintColor}) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={() => {
+              navigation.navigate('ManageExpenses');
+            }}
+          />
+        ),
+      })}>
       <Tab.Screen
         name="RecentExprenses"
         component={RecentExprenses}
