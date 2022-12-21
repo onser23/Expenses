@@ -60,7 +60,11 @@ const ExprensesOverview = () => {
 const NestedNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {backgroundColor: GlobalStyles.colors.primar500},
+          headerTintColor: '#ffffff',
+        }}>
         <Stack.Screen
           name="ExprensesOverview"
           component={ExprensesOverview}
@@ -68,7 +72,14 @@ const NestedNavigator = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="ManageExpenses" component={ManageExpenses} />
+        <Stack.Screen
+          name="ManageExpenses"
+          component={ManageExpenses}
+          options={{
+            // title: 'Manage Expenses',
+            presentation: 'modal',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
